@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: 'Inter', sans-serif;
+        box-sizing: border-box;
+        background-color: #080401;
+    }
+    h1, p, button, a, label, span {
+        color: #F5F5F5
+    }
+    a {
+        font-size: 0.75rem;
+        line-height: 1rem;
+    }
+}
+
+@layer components {
+    .onhover {
+        @apply after:content-[''] after:absolute after:w-full after:scale-0 after:h-[1px] after:bottom-0 after:left-0 after:bg-white after:origin-bottom-right after:transition-transform after:duration-500 after:hover:scale-100 after:hover:origin-bottom-left;
+    }
+}
