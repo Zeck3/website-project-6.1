@@ -10,3 +10,4 @@ Here is the link: https://yorushika.netlify.app/
 ## Bug
 - Vtt lyrics file does not work on deployment
 - Optimization issues with loading resources
+- Not responsive enough
