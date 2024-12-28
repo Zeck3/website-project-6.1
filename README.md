@@ -5,3 +5,5 @@ I am not a thief but this work cannot determined if its plagiarized or not. It i
 updated website-project-6 to website-project.6.1 for migrating to typescript.
 
 Bug: Vtt lyrics file does not work on deployment
+
+Here is the link: https://yorushika.netlify.app/
