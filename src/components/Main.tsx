@@ -19,6 +19,11 @@ type MainProps = {
 export default function Main(props: MainProps) {
   const [isplaying, setIsplaying] = useState(false);
 
+  console.log("MAIN RUN");
+  console.log("player:", document.getElementById(props.id));
+  console.log("lyric:", document.getElementById(props.Lyrics || ""));
+  console.log("lyrics:", document.getElementById(props.VttLyrics || ""));
+
   interface PlayingProps {
     isplaying: boolean;
   }
