@@ -72,6 +72,7 @@ export default function Main(props: MainProps) {
         console.log("timeupdate firing", dom.player?.currentTime);
         const time = dom.player!.currentTime;
         const index = syncLyric(lyrics, time);
+        console.log("sync index:", index);
 
         dom.lyric!.textContent = index == null ? "" : lyrics[index].text;
       };
@@ -176,6 +177,7 @@ const parseVtt = (vtt: string): Subtitle[] => {
 };
 
 const syncLyric = (lyrics: Subtitle[], time: number): number | null => {
+  console.log("parsed lyrics:", lyrics.length);
   const validLyrics = lyrics.filter(
     (lyric) => time >= lyric.startTime && time <= lyric.endTime,
   );
