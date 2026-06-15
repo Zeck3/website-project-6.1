@@ -19,10 +19,6 @@ type MainProps = {
 export default function Main(props: MainProps) {
   const [isplaying, setIsplaying] = useState(false);
 
-  console.log("MAIN RUN");
-  console.log("player:", document.getElementById(props.id));
-  console.log("lyric:", document.getElementById(props.Lyrics || ""));
-
   interface PlayingProps {
     isplaying: boolean;
   }
@@ -73,6 +69,7 @@ export default function Main(props: MainProps) {
       const lyrics = parseVtt(vtt);
 
       const update = () => {
+        console.log("timeupdate firing", dom.player?.currentTime);
         const time = dom.player!.currentTime;
         const index = syncLyric(lyrics, time);
 
