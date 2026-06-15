@@ -8,6 +8,5 @@ Here is the link: https://yorushika.netlify.app/
 - Updated website-project-6 to website-project.6.1 for migrating to typescript.
 
 ## Bug
-- Vtt lyrics file does not work on deployment
 - Optimization issues with loading resources
 - Not responsive enough
