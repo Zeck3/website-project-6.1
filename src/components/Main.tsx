@@ -148,29 +148,43 @@ type Subtitle = {
 };
 
 const parseVtt = (vtt: string): Subtitle[] => {
-  const regex =
-    /^(?<start>\d{2}:\d{2}:\d{2}.\d{3}?) --> (?<end>\d{2}:\d{2}:\d{2}.\d{3}?)\r\n(?<text>.*)$/gm;
-  const matches = [...vtt.matchAll(regex)];
+  const lines = vtt.split(/\r?\n/);
   const output: Subtitle[] = [];
 
-  matches.forEach((match) => {
-    const startTime = parseTime(match.groups?.start || "");
-    const endTime = parseTime(match.groups?.end || "");
-    const text = match.groups?.text.trim() || "";
+  function parseTime(time: string): number {
+    const [h, m, s] = time.split(":");
+    return (
+      Number(h) * 3600 +
+      Number(m) * 60 +
+      Number(s)
+    );
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    const match = line.match(
+      /(\d{2}:\d{2}:\d{2}\.\d{3})\s-->\s(\d{2}:\d{2}:\d{2}\.\d{3})/
+    );
+
+    if (!match) continue;
+
+    const startTime = parseTime(match[1]);
+    const endTime = parseTime(match[2]);
+
+    let text = "";
+    i++;
+
+    while (i < lines.length && lines[i].trim() !== "") {
+      text += lines[i] + " ";
+      i++;
+    }
 
     output.push({
       startTime,
       endTime,
-      text,
+      text: text.trim(),
     });
-  });
-
-  function parseTime(time: string): number {
-    const timeComponents = time.split(":").map(parseFloat);
-    const hoursToSeconds = timeComponents[0] * 3600;
-    const minutesToSeconds = timeComponents[1] * 60;
-    const seconds = timeComponents[2];
-    return hoursToSeconds + minutesToSeconds + seconds;
   }
 
   return output;
